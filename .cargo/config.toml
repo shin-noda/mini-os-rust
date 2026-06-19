@@ -1,0 +1,14 @@
+[build]
+target = "riscv32imac-unknown-none-elf"
+
+[target.riscv32imac-unknown-none-elf]
+runner = "qemu-system-riscv32 -machine virt -bios default -nographic -serial mon:stdio --no-reboot -kernel"
+rustflags = [
+    "-C", "linker-flavor=ld.lld",
+    "-C", "linker=rust-lld",
+    "-C", "link-arg=-Tkernel.ld",
+]
+
+[env]
+CC_riscv32imac-unknown-none-elf = "clang"
+CFLAGS_riscv32imac-unknown-none-elf = "--target=riscv32-unknown-none-elf"

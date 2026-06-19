@@ -1,0 +1,13 @@
+[package]
+name = "mini-os-rust"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Your target-specific crates (like rtt-target, embedded-hal, etc.) go here
+
+[build-dependencies]
+cc = "1.0"
+
+[profile.release]
+opt-level = 2

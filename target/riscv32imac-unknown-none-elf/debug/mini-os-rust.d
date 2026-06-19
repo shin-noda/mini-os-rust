@@ -1,0 +1,1 @@
+/Users/shinnosukenoda/Projects/mini-os-rust/target/riscv32imac-unknown-none-elf/debug/mini-os-rust: /Users/shinnosukenoda/Projects/mini-os-rust/build.rs /Users/shinnosukenoda/Projects/mini-os-rust/src/boot.S /Users/shinnosukenoda/Projects/mini-os-rust/src/main.rs
