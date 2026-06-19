@@ -1,7 +1,9 @@
 #![no_std]
 #![no_main]
 
-use core::panic::PanicInfo;
+pub mod sbi;
+pub mod common; // 1. Register our new shared formatting library
+pub mod panic;
 
 // Link directly to the symbols defined in our kernel.ld script
 extern "C" {
@@ -25,15 +27,12 @@ pub extern "C" fn kernel_main() -> ! {
         }
     }
 
-    // 2. Fall into our infinite kernel execution loop
+    // 2. Fire off our native formatting macros instead of a manual byte loop!
+    println!("\n\nHello {}!", "World from Rust Kernel");
+    println!("1 + 2 = {}, hex verification: {:x}", 1 + 2, 0x1234abcd);
+
+    // 3. Fall into our infinite kernel execution loop
     loop {
-        // Hint to the RISC-V CPU that we are idling in a spin loop
         core::hint::spin_loop();
     }
-}
-
-/// Mandatory panic handler for bare-metal #![no_std]
-#[panic_handler]
-fn panic(_info: &PanicInfo) -> ! {
-    loop {}
 }

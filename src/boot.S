@@ -1,8 +1,8 @@
 .attribute arch, "rv32imac"
 .section .text.boot
-.global boot
+.global _start
 
-boot:
+_start:
     # 1. Load the address of __stack_top (from kernel.ld) into the stack pointer (sp)
     la sp, __stack_top
 
