@@ -31,6 +31,8 @@ pub extern "C" fn kernel_main() -> ! {
     println!("\n\nHello {}!", "World from Rust Kernel");
     println!("1 + 2 = {}, hex verification: {:x}", 1 + 2, 0x1234abcd);
 
+    common::run_tests();
+
     // 3. Fall into our infinite kernel execution loop
     loop {
         core::hint::spin_loop();
