@@ -1,8 +1,10 @@
+// src/main.rs
+
 #![no_std]
 #![no_main]
 
 pub mod sbi;
-pub mod common; // 1. Register our new shared formatting library
+pub mod common; 
 pub mod panic;
 
 // Link directly to the symbols defined in our kernel.ld script
@@ -31,10 +33,12 @@ pub extern "C" fn kernel_main() -> ! {
     println!("\n\nHello {}!", "World from Rust Kernel");
     println!("1 + 2 = {}, hex verification: {:x}", 1 + 2, 0x1234abcd);
 
+    // Run our library diagnostics (align_up, strcmp, etc.)
     common::run_tests();
 
-    // 3. Fall into our infinite kernel execution loop
-    loop {
-        core::hint::spin_loop();
-    }
+    // 3. Trigger our fresh bare-metal panic test!
+    panic!("booted!");
+
+    // Everything below this point is guaranteed unreachable.
+    // The compiler knows this because our panic handler returns '!'
 }

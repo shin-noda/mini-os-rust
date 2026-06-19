@@ -1,17 +1,20 @@
+// src/panic.rs
 use core::panic::PanicInfo;
-use crate::println;
+use crate::println; 
 
 #[panic_handler]
 fn panic(info: &PanicInfo) -> ! {
-    println!("\n!!! KERNEL PANIC !!!");
-    
+    // 1. Match the "PANIC: " prefix and location from the tutorial
     if let Some(location) = info.location() {
-        println!("Location: {}:{}:{}", location.file(), location.line(), location.column());
+        println!("PANIC: {}:{}: ", location.file(), location.line());
+    } else {
+        println!("PANIC: unknown_file:0: ");
     }
-    
-    // PanicMessage implements Display directly, no Option unwrap needed!
-    println!("Message: {}", info.message());
 
+    // 2. Print the message directly (No 'if let Some' or unwrapping needed!)
+    println!("{}", info.message());
+
+    // 3. The infinite halt loop
     loop {
         core::hint::spin_loop();
     }
