@@ -1,7 +1,7 @@
 # mini-os-rust
 
 ## OS File Structure
-
+```text
 ├── .cargo/
 │   └── config.toml    <-- Specifies the 32-bit RISC-V target and linker options
 ├── disk/              <-- File system contents (same as the tutorial)
@@ -18,3 +18,4 @@
 ├── kernel.ld          <-- Kernel: Linker script
 ├── user.ld            <-- User: Linker script
 └── Cargo.toml         <-- Manifest defining dependencies and workspace build targets
+```
